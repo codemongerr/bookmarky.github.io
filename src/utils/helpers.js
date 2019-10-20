@@ -57,7 +57,7 @@ export const validateUrl = url => {
 };
 
 /**
- * Method to conver HTML string to node
+ * Method to convert HTML string to node
  *
  * @param {string} string - HTML element in form of string
  *
@@ -68,4 +68,16 @@ export const createElementFromHTML = htmlString => {
   div.innerHTML = htmlString.trim();
   // Change this to div.childNodes to support multiple top-level nodes
   return div.firstChild;
+};
+
+/**
+ * Method to check if url exists
+ *
+ * @param {string} url - url including protocol
+ *
+ * @return {boolean}
+ */
+export const checkIfUrlExists = url => {
+  // [@TODO] - do http request to check if provided url exists
+  return true;
 };

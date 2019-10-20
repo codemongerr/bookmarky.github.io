@@ -4,6 +4,7 @@ import {
   getByClassName,
   getUrlParameter,
   validateUrl,
+  checkIfUrlExists,
   createElementFromHTML
 } from "./utils/helpers";
 import css from "./assets/css/styles.css";
@@ -24,7 +25,7 @@ class App {
    * Sets the list of bookmars from store
    * Bootstrap app
    *
-   * @retrun {void}
+   * @return {void}
    */
   constructor() {
     this.currentPage =
@@ -38,7 +39,7 @@ class App {
    * Gets the list bookmarks basd on current page
    * Creates pagination
    *
-   * @retrun {void}
+   * @return {void}
    */
   bootstrap() {
     this.getList();
@@ -48,7 +49,7 @@ class App {
   /**
    * Method to get initial bookmarks
    *
-   * @retrun {void}
+   * @return {void}
    */
   initStore() {
     let store = this.getStore() || "[]";
@@ -58,7 +59,7 @@ class App {
   /**
    * Method to get bookmarks from local storage
    *
-   * @retrun {void}
+   * @return {void}
    */
   getStore() {
     const store = localStorage.getItem(constants.STORE_KEY_NAME);
@@ -68,7 +69,7 @@ class App {
   /**
    * Method to set bookmarks in local storage
    *
-   * @retrun {void}
+   * @return {void}
    */
   setStore() {
     localStorage.setItem(
@@ -80,7 +81,7 @@ class App {
   /**
    * Gets the paginated list of bookmarks based on current page
    *
-   * @retrun {void}
+   * @return {void}
    */
   getList() {
     const bookmarkList = getById("bookmarks-list");
@@ -105,7 +106,7 @@ class App {
   /**
    * Method to add new bookmark and store in local storage
    *
-   * @retrun {void}
+   * @return {void}
    */
   addBookmark() {
     const form = getById("bookmark-form");
@@ -114,7 +115,11 @@ class App {
       // Gets the url provided by user
       const url = getById("url").value;
       // Only add url to store if it is a valid url
-      if (validateUrl(url) && !this.bookmarks.includes(url)) {
+      if (
+        validateUrl(url) && 
+        checkIfUrlExists(url) &&
+        !this.bookmarks.includes(url)
+      ) {
         this.bookmarks = [url, ...this.bookmarks];
         // Rebuild view after URL is added to store
         this.setStore();
@@ -128,7 +133,7 @@ class App {
   /**
    * Method to remove url from store
    *
-   * @retrun {void}
+   * @return {void}
    */
   removeBookmark() {
     const btns = getByClassName("bookmark-remove");
@@ -163,7 +168,7 @@ class App {
   /**
    * Method to edit bookmarked url from store
    *
-   * @retrun {void}
+   * @return {void}
    */
   editBookmark() {
     const btns = getByClassName("bookmark-update");
@@ -177,6 +182,7 @@ class App {
       if (
         confirm("Are you sure you want to update this bookmark?") &&
         ths.bookmarks[index] != urlEl.value &&
+        checkIfUrlExists(urlEl.value) &&
         validateUrl(urlEl.value)
       ) {
         ths.bookmarks[index] = urlEl.value;
@@ -193,14 +199,10 @@ class App {
     }
   }
 
-  checkIfUrlExists(url) {
-    console.log(url);
-  }
-
   /**
    * Created the pagination
    *
-   * @retrun {void}
+   * @return {void}
    */
   createPagination() {
     const el = getById("pagination");
