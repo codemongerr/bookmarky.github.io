@@ -1,0 +1,40 @@
+{
+  "name": "bookmarky",
+  "version": "0.1.0",
+  "description": "A simple app to manage bookmarks.",
+  "scripts": {
+    "dev": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "build": "webpack --env.NODE_ENV=development --mode development",
+    "build:prod": "webpack --env.NODE_ENV=production --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codemongerr/bookmarky.github.io.git"
+  },
+  "author": "Talwinder Singh",
+  "license": "MIT",
+  "homepage": "https://bookmarky.github.io",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.4.2",
+    "babel-loader": "^8.0.5",
+    "clean-webpack-plugin": "^2.0.1",
+    "copy-webpack-plugin": "^5.0.2",
+    "cross-env": "^5.2.0",
+    "css-loader": "^3.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "file-loader": "^3.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "prettier-eslint": "^8.8.2",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1",
+    "webpack-merge": "^4.2.1"
+  }
+}
