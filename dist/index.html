@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bookmarky | A simple bookmark app</title>
+    <meta charset="utf-8" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Overpass+Mono:400,700"
+      rel="stylesheet"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+  </head>
+  <body>
+    <div id="app" class="app">
+      <div class="app-inner">
+        <div id="app-view">
+          <h1>A simpe app to add, edit and delete bookmarks.</h1>
+          <hr />
+          <form
+            action="#"
+            method="post"
+            class="form form--horizontal"
+            id="bookmark-form"
+          >
+            <h2>Add a bookmark</h2>
+            <div class="form-group">
+              <label for="url" class="form-label">URL:</label>
+              <input
+                type="url"
+                name="url"
+                id="url"
+                class="form-control"
+                required
+                autocomplete="off"
+                placeholder="https://www.google.com"
+              />
+              <button class="btn btn-primary" type="submit">Add</button>
+            </div>
+          </form>
+          <section class="bookmarks-section">
+            <h2 class="bookmarks-section-heading">Bookmarks</h2>
+            <div id="bookmarks-list"></div>
+            <div id="pagination"></div>
+          </section>
+          <script id="bookmark-tmpl" type="text/html">
+            <div class="bookmark">
+              <input type="url" class="form-control bookmark-url" id="bookmark-{{index}}" value="{{url}}" />
+              <a href="{{url}}" target="_blank" class="btn btn-primary">Visit</a>
+              <button class="btn btn-primary bookmark-update" data-index="{{index}}">Update</button>
+              <button class="btn btn-danger bookmark-remove" data-index="{{index}}">Delete</button>
+            </div>
+          </script>
+        </div>
+        <div id="success-msg"></div>
+      </div>
+    </div>
+  <script type="text/javascript" src="https://codemongerr.github.io/bookmarky.github.io/bundle.min.js"></script></body>
+</html>
